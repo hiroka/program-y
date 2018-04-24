@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml>
+    <!-- -->
+    <!-- Free software (c) 2011 ALICE A.I. Foundation.   -->
+    <!-- This program is open source code released under -->
+    <!-- the terms of the GNU General Public License     -->
+    <!-- as published by the Free Software Foundation.   -->
+    <!-- Complies with AIML 1.0 Tag Set Specification -->
+    <!-- as adopted by the ALICE A.I. Foundation.  -->
+    <!-- Last modified 12/17/2011 -->
+    <!-- -->
+
+    <!-- Modified for Y-Bot by Keith Sterling July 2017 -->
+
+    <category>
+      <pattern>機嫌</pattern>
+      <template>とても良いです。ありがとう。</template>
+    </category>
+    <category>
+      <pattern>機嫌 *</pattern>
+      <template>とても良いです。ありがとう。</template>
+    </category>
+    <category>
+      <pattern>* 機嫌</pattern>
+      <template>とても良いです。ありがとう。</template>
+    </category>
+    <category>
+      <pattern>* 機嫌 *</pattern>
+      <template>とても良いです。ありがとう。</template>
+    </category>
+
+    <category>
+      <pattern>こんにちは</pattern>
+      <template>こんにちは</template>
+    </category>
+    <category>
+      <pattern>こんにちは *</pattern>
+      <template>こんにちはですね</template>
+    </category>
+    <category>
+      <pattern>* こんにちは</pattern>
+      <template>そうですね、こんにちは</template>
+    </category>
+    <category>
+      <pattern>* こんにちは *</pattern>
+      <template>そうですね、こんにちはですね</template>
+    </category>
+
+    <category>
+      <pattern>hello</pattern>
+      <template>hello me</template>
+    </category>
+
+
+    <category>
+      <pattern>THE * IS BLUE</pattern>
+      <template>
+        I will remember that the <star /> is blue.
+        <learn>
+        <category>
+        <pattern>WHAT COLOR IS THE <eval><star /></eval></pattern>
+        <template>The <eval><star /></eval> is blue</template>
+        </category>
+      </learn>
+      </template>
+    </category>
+
+    <category>
+        <pattern>GET ABC</pattern>
+        <template>
+            <extension path="programy.extensions.newsapi.newsapi.NewsAPIExtension">
+                SOURCE abc-news-au MAX 10 SORT False REVERSE False
+            </extension>
+        </template>
+    </category>
+
+    <category>
+        <pattern>*</pattern>
+        <template>
+            <extension path="programy.extensions.talkapi.talkapi.TalkAPIExtension">
+				<star index="1"/>
+            </extension>
+        </template>
+    </category>
+
+    <category>
+        <pattern>
+           NEWS * MAX * SORT * REVERSE *
+        </pattern>
+        <template>
+            <extension path="programy.extensions.newsapi.newsapi.NewsAPIExtension">
+                SOURCE <star index="1"/> MAX <star index="2"/> SORT <star index="3"/> REVERSE <star index="4"/>
+            </extension>
+        </template>
+    </category>
+
+    <category>
+        <pattern>ha</pattern>
+        <template>
+          hahaha
+        </template>
+    </category>
+
+
+    <category>
+      <pattern>NEWS</pattern>
+      <template>
+          <extension path="programy.extensions.newsapi.newsapi.NewsAPIExtension">
+                SOURCE abc-news-au MAX 10 SORT False REVERSE False
+          </extension>
+      </template>
+    </category>
+
+    <category>
+      <pattern>銀行</pattern>
+      <template>
+          <extension path="programy.extensions.banking.balance.BankingBalanceExtension">
+          <star />
+          </extension>
+      </template>
+    </category>
+
+    <category>
+      <pattern>どこ</pattern>
+      <template>
+        <think>
+          <set name="place"></set>
+          <set name="who"></set>
+        </think>
+        どこへいきましょう
+      </template>
+    </category>
+
+    <category>
+      <pattern>*</pattern>
+	     <that>どこへいきましょう</that>
+	      <template>
+          <think><set name="place"><star index="1"/></set></think>
+          誰と行きますか？
+        </template>
+    </category>
+
+    <category>
+      <pattern>*</pattern>
+      <that>誰と行きますか？</that>
+      <template>
+        <think><set name="who"><star index="1"/></set></think>
+        <get name="place"/>に<get name="who"/>と行くんですね。いいなー
+      </template>
+    </category>
+
+    <category>
+      <pattern>国立新美術館</pattern>
+      <template>うん</template>
+    </category>
+
+    <category>
+      <pattern>* 国立新美術館</pattern>
+      <template>え？<star /></template>
+    </category>
+
+    <category>
+      <pattern>国立新美術館 *</pattern>
+      <template><star />とは</template>
+    </category>
+
+    <category>
+      <pattern>* 国立新美術館 *</pattern>
+      <template>え？<star />ですか</template>
+    </category>
+
+ </aiml>
